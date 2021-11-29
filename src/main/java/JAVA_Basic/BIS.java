@@ -1,3 +1,5 @@
+package JAVA_Basic;
+
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 public class BIS {
     public static void main(String[] args) throws IOException {
-
+        // 버스위치정보조회 서비스 API
         String serviceKey = "DSIFuujRLymNXuOh6mIiMPZj987S4RiiOlsEVW19xiDT%2BhDxckUEmLiQ42%2BlOJuNJKvmTkfpW%2FuWJwqwfpEdtw%3D%3D";
         StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId");/*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /*Service Key*/
