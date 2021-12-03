@@ -13,15 +13,15 @@ public class VehID {
     public static void main(String[] args) throws IOException {
         //노선정보조회 서비스 API를 활용해 VehID 추출
         String serviceKey = "DSIFuujRLymNXuOh6mIiMPZj987S4RiiOlsEVW19xiDT%2BhDxckUEmLiQ42%2BlOJuNJKvmTkfpW%2FuWJwqwfpEdtw%3D%3D";
-        StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/busRouteInfo/getStaionByRoute");/*URL*/
+        StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList");/*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /*Service Key*/
         Scanner sc = new Scanner(System.in);
-        String vehID;
+        String strSrch;
 
         System.out.println("차량번호를 입력하세요");
-        vehID = sc.nextLine();
+        strSrch = sc.nextLine();
 
-        urlBuilder.append("&" + URLEncoder.encode("vehId","UTF-8") + "=" + URLEncoder.encode("vehID", "UTF-8")); /**/
+        urlBuilder.append("&" + URLEncoder.encode("strSrch","UTF-8") + "=" + URLEncoder.encode(strSrch, "UTF-8")); /**/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");

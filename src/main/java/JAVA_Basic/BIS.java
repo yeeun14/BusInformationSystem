@@ -15,12 +15,12 @@ public class BIS {
         StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId");/*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /*Service Key*/
         Scanner sc = new Scanner(System.in);
-        String vehID;
+        String vehId;
 
         System.out.println("차량 ID를 입력하세요");
-        vehID = sc.nextLine();
+        vehId = sc.nextLine();
 
-        urlBuilder.append("&" + URLEncoder.encode("vehId","UTF-8") + "=" + URLEncoder.encode("vehID", "UTF-8")); /**/
+        urlBuilder.append("&" + URLEncoder.encode("vehId","UTF-8") + "=" + URLEncoder.encode(vehId, "UTF-8")); /**/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
