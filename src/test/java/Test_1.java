@@ -17,8 +17,8 @@ public class Test_1 {
 
         try {
 
-            URL url = new URL("http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList.json?key="
-                    + key + "&strSrch=130");
+            URL url = new URL("http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?key="
+                    + key + "&strSrch=130" + "_type=json");
 
             BufferedReader bf;
 
@@ -43,11 +43,12 @@ public class Test_1 {
 
             System.out.println("노선ID : " + itemList.get("busRouteId"));
             System.out.println("노선명 : " + itemList.get("busRouteNm"));
-            System.out.println("영화명(영문) : " + itemList.get("movieNmEn"));
-            System.out.println("재생시간 : " + itemList.get("showTm"));
-            System.out.println("개봉일 : " + itemList.get("openDt"));
-            System.out.println("영화유형 : " + itemList.get("typeNm"));
-            System.out.println("제작국가명 : " + itemList.get("nationNm"));
+            System.out.println("노선유형 : " + itemList.get("routeType"));
+            System.out.println("기점 : " + itemList.get("stStationNm"));
+            System.out.println("종점 : " + itemList.get("edStationNm"));
+            System.out.println("금일첫차시간 : " + itemList.get("firstBusTm"));
+            System.out.println("금일막차시간 : " + itemList.get("lastBusTm"));
+            System.out.println("운수사명 : " + itemList.get("corpNm"));
 
             String genreNm = "";
 
