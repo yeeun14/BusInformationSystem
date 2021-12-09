@@ -1,3 +1,5 @@
+//노선정보 API는 json의 형태를 제공하지 않는다.
+
 //import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,7 +20,7 @@ public class Test_1 {
         try {
 
             URL url = new URL("http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?key="
-                    + key + "&strSrch=130" + "_type=json");
+                    + key + "&strSrch=130" + "&_json");
 
             BufferedReader bf;
 
@@ -29,7 +31,8 @@ public class Test_1 {
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
             JSONObject ServiceResult = (JSONObject)jsonObject.get("ServiceResult");
-            JSONObject itemList = (JSONObject)ServiceResult.get("itemList");
+            JSONObject msgBody = (JSONObject)ServiceResult.get("msgBody");
+            JSONObject itemList = (JSONObject)msgBody.get("itemList");
 
             /*JSONArray nations = (JSONArray)itemList.get("nations");
             JSONObject nations_nationNm = (JSONObject)nations.get(0);
@@ -50,7 +53,7 @@ public class Test_1 {
             System.out.println("금일막차시간 : " + itemList.get("lastBusTm"));
             System.out.println("운수사명 : " + itemList.get("corpNm"));
 
-            String genreNm = "";
+            //String genreNm = "";
 
            /* for(int i = 0; i < genres.size(); i++) {
                 JSONObject genres_genreNm = (JSONObject)genres.get(i);
