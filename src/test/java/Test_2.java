@@ -23,7 +23,7 @@ public class Test_2 {
         try{
             while(true){
                 // parsing할 url 지정(API 키 포함해서)
-                String url = "http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?ServiceKey=DSIFuujRLymNXuOh6mIiMPZj987S4RiiOlsEVW19xiDT%2BhDxckUEmLiQ42%2BlOJuNJKvmTkfpW%2FuWJwqwfpEdtw%3D%3D&strSrch=3"+page;
+                String url = "http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?ServiceKey=DSIFuujRLymNXuOh6mIiMPZj987S4RiiOlsEVW19xiDT%2BhDxckUEmLiQ42%2BlOJuNJKvmTkfpW%2FuWJwqwfpEdtw%3D%3D&strSrch=130"+page;
 
                 DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
@@ -34,8 +34,8 @@ public class Test_2 {
                 System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
                 // 파싱할 tag
-                NodeList nList = doc.getElementsByTagName("baseinfo");
-                //System.out.println("파싱할 리스트 수 : "+ nList.getLength());
+                NodeList nList = doc.getElementsByTagName("itemList");
+                System.out.println("파싱할 리스트 수 : "+ nList.getLength());
 
                 for(int temp = 0; temp < nList.getLength(); temp++){
                     Node nNode = nList.item(temp);
@@ -44,17 +44,21 @@ public class Test_2 {
                         Element eElement = (Element) nNode;
                         System.out.println("######################");
                         //System.out.println(eElement.getTextContent());
-                        System.out.println("금융사  : " + getTagValue("kor_co_nm", eElement));
-                        System.out.println("상품 코드  : " + getTagValue("fin_prdt_cd", eElement));
-                        System.out.println("상품명 : " + getTagValue("fin_prdt_nm", eElement));
-                        System.out.println("연평균 수익률  : " + getTagValue("avg_prft_rate", eElement));
-                        System.out.println("공시 이율  : " + getTagValue("dcls_rate", eElement));
+                        System.out.println("노선ID  : " + getTagValue("busRouteId", eElement));
+                        System.out.println("노선명  : " + getTagValue("busRouteNm", eElement));
+                        System.out.println("노선유형 : " + getTagValue("routeType", eElement));
+                        System.out.println("기점  : " + getTagValue("stStationNm", eElement));
+                        System.out.println("종점  : " + getTagValue("edStationNm", eElement));
+                        System.out.println("금일첫차시간  : " + getTagValue("firstBusTm", eElement));
+                        System.out.println("금일막차시간  : " + getTagValue("lastBusTm", eElement));
+                        System.out.println("운수사명  : " + getTagValue("corpNm", eElement));
+
                     }	// for end
                 }	// if end
 
                 page += 1;
                 System.out.println("page number : "+page);
-                if(page > 12){
+                if(page > nList.getLength()){
                     break;
                 }
             }	// while end
